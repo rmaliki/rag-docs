@@ -1,0 +1,8 @@
+{
+  "document_id": "doc-hr-001",
+  "title": "Parental Leave Policy",
+  "department": "HR",
+  "allowed_groups": ["all-employees", "hr-team"],
+  "classification": "internal",
+  "version": 2
+}

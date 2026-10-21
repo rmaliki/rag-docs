@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: enterprise-rag-migrate
+  namespace: enterprise-rag
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+      containers:
+        - name: migrate
+          image: ghcr.io/<org>/enterprise-rag:0.1.0
+          command: ["alembic", "upgrade", "head"]
+          envFrom:
+            - configMapRef:
+                name: enterprise-rag-config
+            - secretRef:
+                name: enterprise-rag-secrets

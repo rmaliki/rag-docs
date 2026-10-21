@@ -1,0 +1,24 @@
+[project]
+name = "enterprise-rag"
+version = "0.1.0"
+description = "Secure enterprise knowledge assistant: permission-filtered RAG on PostgreSQL + pgvector"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+markers = ["integration: needs a PostgreSQL + pgvector database (RAG_TEST_*_DATABASE_URL)"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106"]
+"migrations/*" = ["S608"]
+"app/retrieval/*" = ["S608"]

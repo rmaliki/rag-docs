@@ -1,0 +1,8 @@
+{
+  "document_id": "doc-mkt-001",
+  "title": "Northern Lights Campaign Strategy",
+  "department": "Marketing",
+  "allowed_groups": ["marketing-team", "executives"],
+  "classification": "confidential",
+  "version": 1
+}

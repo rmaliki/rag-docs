@@ -1,0 +1,8 @@
+{
+  "document_id": "doc-hr-002",
+  "title": "HR Compensation Policy — Executives",
+  "department": "HR",
+  "allowed_groups": ["hr-team", "executives"],
+  "classification": "restricted",
+  "version": 3
+}

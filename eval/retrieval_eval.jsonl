@@ -1,0 +1,8 @@
+{"user": "marketing", "question": "What is our latest campaign strategy?", "relevant": ["doc-mkt-001"], "forbidden": ["doc-hr-002", "doc-fin-001"]}
+{"user": "hr", "question": "What is our parental leave policy?", "relevant": ["doc-hr-001"], "forbidden": ["doc-fin-001", "doc-mkt-001"]}
+{"user": "marketing", "question": "What are the executive salaries?", "relevant": [], "forbidden": ["doc-hr-002"]}
+{"user": "finance", "question": "What is our Q3 budget?", "relevant": ["doc-fin-001"], "forbidden": ["doc-hr-002", "doc-mkt-001"]}
+{"user": "executive", "question": "What is the CEO base salary?", "relevant": ["doc-hr-002"], "forbidden": []}
+{"user": "marketing", "question": "How many weeks of parental leave do I get?", "relevant": ["doc-hr-001"], "forbidden": ["doc-hr-002"]}
+{"user": "finance", "question": "How much is budgeted for the Northern Lights campaign?", "relevant": ["doc-fin-001"], "forbidden": ["doc-mkt-001"]}
+{"user": "hr", "question": "What bonus target applies to executives?", "relevant": ["doc-hr-002"], "forbidden": ["doc-fin-001"]}

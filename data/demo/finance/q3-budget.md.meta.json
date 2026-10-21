@@ -1,0 +1,8 @@
+{
+  "document_id": "doc-fin-001",
+  "title": "Q3 2026 Budget",
+  "department": "Finance",
+  "allowed_groups": ["finance-team", "executives"],
+  "classification": "confidential",
+  "version": 1
+}
