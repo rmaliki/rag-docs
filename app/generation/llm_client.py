@@ -33,6 +33,7 @@ class OpenAIChatClient:
         self._max_tokens = max_tokens
 
     async def complete(self, messages: list[dict[str, str]]) -> LLMResult:
+        from azure.core.exceptions import ClientAuthenticationError
         from openai import OpenAIError
 
         started = time.perf_counter()
@@ -57,7 +58,8 @@ class OpenAIChatClient:
                         if first_token_at is None:
                             first_token_at = time.perf_counter()
                         parts.append(delta)
-        except OpenAIError as exc:
+        # The Entra token provider raises Azure errors, not OpenAI ones (e.g. no managed identity or az login).
+        except (OpenAIError, ClientAuthenticationError) as exc:
             raise LLMError(f"{type(exc).__name__}: {exc}") from exc
 
         return LLMResult(

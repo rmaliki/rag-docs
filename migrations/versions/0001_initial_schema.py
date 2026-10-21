@@ -120,6 +120,8 @@ UPGRADE = [
 
 DOWNGRADE = [
     "DROP TABLE IF EXISTS document_chunks",
+    # documents_read queries document_acl, so it must go before that table can be dropped.
+    "DROP POLICY IF EXISTS documents_read ON documents",
     "DROP TABLE IF EXISTS document_acl",
     "DROP TABLE IF EXISTS documents",
     "DROP FUNCTION IF EXISTS app_principals()",

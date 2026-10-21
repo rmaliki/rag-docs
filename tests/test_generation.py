@@ -1,7 +1,10 @@
 from types import SimpleNamespace
 
+import pytest
+from azure.core.exceptions import ClientAuthenticationError
+
 from app.auth.permissions import Permissions
-from app.generation.llm_client import LLMResult, OpenAIChatClient
+from app.generation.llm_client import LLMError, LLMResult, OpenAIChatClient
 from app.generation.prompts import INSUFFICIENT_EVIDENCE_ANSWER, build_messages, select_sources
 from app.generation.rag_service import RagService
 from tests.conftest import make_chunk
@@ -125,3 +128,14 @@ async def test_openai_client_streams_and_measures_time_to_first_token():
     assert (result.prompt_tokens, result.completion_tokens) == (12, 2)
     assert result.time_to_first_token is not None
     assert captured["stream"] is True and captured["model"] == "gpt-4o"
+
+
+async def test_entra_token_failure_becomes_llm_error():
+    async def create(**kwargs):
+        raise ClientAuthenticationError("DefaultAzureCredential failed to retrieve a token")
+
+    client = SimpleNamespace(chat=SimpleNamespace(completions=SimpleNamespace(create=create)))
+    with pytest.raises(LLMError):
+        await OpenAIChatClient(client, "gpt-4o", temperature=0, max_tokens=50).complete(
+            [{"role": "user", "content": "hi"}]
+        )

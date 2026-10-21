@@ -169,7 +169,8 @@ Recall@k and citation correctness need labelled data, so they come from `make ev
 `k8s/` contains a namespace, ConfigMap, Secret template, migration Job, Deployment (non-root, read-only root
 filesystem, probes), Service and HPA. PostgreSQL is expected to be managed (Azure Database for PostgreSQL Flexible
 Server with the `vector` extension allow-listed); create the `rag_app` role there as in
-`docker/postgres/init/01-create-app-role.sh`. Source secrets from Key Vault rather than a plain Secret.
+`docker/postgres/init/01-create-app-role.sh`. Filtered HNSW search uses `hnsw.iterative_scan`, which needs
+pgvector 0.8 or later; on an older pgvector set `HNSW_ITERATIVE_SCAN=false`. Source secrets from Key Vault rather than a plain Secret.
 
 ## Project layout
 
